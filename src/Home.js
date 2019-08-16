@@ -30,6 +30,7 @@ switch = () => {
 
 render() {
     let component 
+    console.log(this.props.match.params.id)
     if( this.statecomponentToRender === 'Login')
     component =<login />
     else component =<Register />

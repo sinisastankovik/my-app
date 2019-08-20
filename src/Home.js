@@ -31,8 +31,8 @@ switch = () => {
 render() {
     let component 
     console.log(this.props.match.params.id)
-    if( this.statecomponentToRender === 'Login')
-    component =<login />
+    if( this.state.componentToRender === 'Login')
+    component =<Login />
     else component =<Register />
   
 

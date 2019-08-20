@@ -1,13 +1,35 @@
 import React from 'react'
 
-const Login = (props) => {
+class Login extends React.Component {
+    constructor () {
+        super ()
+        this.state = {
+            username: '',
+            password: ''
+        }
+    }
+     onInputChange = (event) => {
+         console.log (event.target.value)
+         this.setState({
+                [event.target.id]: event.target.value
+         })
+     }
+
+     displayUserInput = () => {
+         alert(this.state.username + this.state.password)
+     }
+    render () {
     return <div>
-        <input id='usename' placeholder='username' type='text'/>
+        <input 
+        onChange={this.onInputChange}
+        id='username' placeholder='username' type='text'/>
         <br />
-        <input id='password' placeholder='password' type='password'/>
+        <input 
+        onChange={this.onInputChange}
+        id='password' placeholder='password' type='password'/>
         <br />
-        <button id='login'>Login</button>
+        <button onClick = {this.displayUserInput} id='login'>Login</button>
     </div>
 }
-
+}
 export default Login

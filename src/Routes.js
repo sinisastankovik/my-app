@@ -1,7 +1,6 @@
 import React from'react'
 import Home from './Home.js'
 import Menu from './Menu.js'
-import LoggedInAs from './LoginComponents/LoggedInAs'
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
 
 
@@ -12,7 +11,6 @@ return(
         <Switch>
         <Route exact={true} path='/' component={null} />
         <Route exact={true} path='/login' component={Home} />
-        <Route exact={true} path='/main' component={LoggedInAs} />
         <Route exact component={PathError} />
         </Switch>
     </Router>

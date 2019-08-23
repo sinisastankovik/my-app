@@ -1,26 +1,30 @@
-import React from'react'
+import React from 'react'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Home from './Home.js'
 import Menu from './Menu.js'
-import LoggedInAs from './LoginComponents/LoggedInAs'
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
+import LoggedInAs from './LoginComponents/LoggedInAs.js'
+import Favorites from './Recepies/Favorites'
+import Recepies from './Recepies/Recepies.js'
 
-
-const Routes = () =>{
-return(
-    <Router> 
-        <Menu />
-        <Switch>
-        <Route exact={true} path='/' component={null} />
-        <Route exact={true} path='/login' component={Home} />
-        <Route exact={true} path='/main' component={LoggedInAs} />
-        <Route exact component={PathError} />
-        </Switch>
-    </Router>
-)
-
+const Routes = () => {
+    return (
+        <Router>
+            
+            <Menu />
+            <Switch>
+                <Route exact path='/' component={Recepies} />
+                <Route exact path='/login' component={Home} />
+                <Route exact path='/main' component={LoggedInAs} />
+                <Route exact path='/fav' component={Favorites} />
+                <Route exact component={PathError} />
+            </Switch>
+            
+        </Router>
+    )
 }
+
+export default Routes
 
 const PathError = () => {
-    return <h1> Error 404! Not found</h1>
+    return <h1> Error 404! Not found. </h1>
 }
-export default Routes

@@ -3,7 +3,6 @@ import Login from './LoginComponents/Login.js'
 import Register from './LoginComponents/Register.js'
 
 
-
 class Home extends React.Component {
 
     constructor (props){

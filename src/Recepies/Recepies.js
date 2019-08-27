@@ -1,62 +1,46 @@
 import React from 'react'
 import  './recepies.css'
+import store from '../Redux/store.js'
+import { fetchRecepies } from '../Redux/fetchRecepies.js'
 import SingleRecepie from './SingleRecepie.js'
+import { connect } from 'react-redux'
 
 
-const data = [
-    {
-        key: 'tuna',
-        description: 'Tuna salad'
-    },
-    {
-        key: 'caesar',
-        description: 'Caesar salad'
-    },
-    {
-        key: 'mixed',
-        description: 'Mixed salad'
-    },
-    {
-        key: 'pesto',
-        description: 'Pesto salad'
+class Recepies extends React.Component {
+    componentWillMount () {
+        if(this.props.recepies.length === 0){
+        store.dispatch(fetchRecepies())
     }
-]
-
-
-
-const Recepies = () => {
-    const components = data.map((element) => {
-        return <SingleRecepie key= {element.key} 
-        description = {element.description} />
+}
+    render () {
+    const components = this.props.recepies.map((element) => {
+        return <SingleRecepie 
+            key= {element.id} 
+            description = {element.title} />
     })
     
 
+    
+
+if (components.length < 1) {
+
+    return <div> Loading... </div>
+
+} else
+{
     return <div id='recepies' className='flex-container'>
         
-        {components}
+    {components}
 
-        {/*<div className='flex-item'> 
-        <div id='tuna'>Tuna salad</div>
-        <button className='btn btn-success' onClick={store.dispatch(addItemToFavorites('tuna'))}>Add to favorites</button>
-        </div>
+    </div>
+}
+}}
 
-        <div className='flex-item'> 
-        <div id='caesar'>Caesar salad</div>
-        <button className='btn btn-success' onClick={store.dispatch(addItemToFavorites('caesar'))}>Add to favorites</button>
-        </div>
 
-        <div className='flex-item'> 
-        <div id='mixed'>Mixed salad</div>
-        <button className='btn btn-success' onClick={store.dispatch(addItemToFavorites('mixed'))}>Add to favorites</button>
-        </div>
-
-        <div className='flex-item'> 
-        <div id='pesto'>Pesto salad</div>
-        <button className='btn btn-success' onClick={store.dispatch(addItemToFavorites('pesto'))}>Add to favorites</button>
-        </div>
-*/}
-        
-        </div>
+function mapStateToProps (state) { 
+    return {
+        recepies: state.recepies.recepies
+    }
 }
 
-export default Recepies
+export default connect(mapStateToProps)(Recepies)

@@ -4,14 +4,29 @@ import { connect } from 'react-redux'
 
 const Favorites = (props) => {
     
-    console.log(props)
-    return <div> test </div>
+    let emptyList = ''
+    const components = props.favorites.map((element) => {
+        return <SingleRecepie
+            key={element.key}
+            description={element.description}
+        />
+    })
+
+    if (components.length < 1) {
+        emptyList = 'You have no favorite recepies'
+    }
+    
+    return <div>
+        {emptyList}
+        {components}
+    </div>
 }
 
 function mapStateToProps (state) {
     return {
-        favorites: state.favorites
+        favorites: state.favorites.recepies
     }
 }
 
 export default connect(mapStateToProps)(Favorites)
+

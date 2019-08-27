@@ -31,7 +31,10 @@ class Login extends React.Component {
         onChange={this.onInputChange}
         id='password' placeholder='password' type='password'/>
         <br />
-        <button onClick = {() => store.dispatch(this.state.username)} id='login'>Login</button>
+        <button
+                id='login'>
+                Log In
+            </button>
     
    <LoggedInAs />
     

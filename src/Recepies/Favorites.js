@@ -7,7 +7,9 @@ const Favorites = (props) => {
     let emptyList = ''
     const components = props.favorites.map((element) => {
         return <SingleRecepie
-            key={element.key}
+            action = 'remove'
+            key = {element.key}
+            id = {element.key}
             description={element.description}
         />
     })

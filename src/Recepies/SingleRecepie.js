@@ -1,23 +1,36 @@
 import React from 'react'
 import store from '../Redux/store.js'
-import { addItemToFavorites } from '../Redux/favoritesActions'
+import { addItemToFavorites, removeItemFromFavorites } from '../Redux/favoritesActions'
 
 export default class SingleRecepie extends React.Component {
     addToFavorites = () => {
-        store.dispatch(addItemToFavorites(this.props.description))
+        store.dispatch(addItemToFavorites({key: this.props.id, description: this.props.description}))
     
     }
-
+    removeFromFavorites = () => {
+        store.dispatch(removeItemFromFavorites(this.props.id))
+    }
 
     render () {
-
-        return <div className='flex-item'> 
-        <div id='tuna'> {this.props.description} </div>
-        <button className='btn btn-success' 
+        let button = null
+        if (this.props.action === 'add'){
+            button = <button className='btn btn-success' 
             onClick={this.addToFavorites}>
 
             Add to favorites
+            </button>       
+        } else {
+            button = <button className='btn btn-danger' 
+            onClick={this.removeFromFavorites}>
+
+            Remove from favorites
             </button>
+        }
+       
+
+        return <div className='flex-item'> 
+        <div id='tuna'> {this.props.description} </div>
+        {button}
         </div>
     }
 }
